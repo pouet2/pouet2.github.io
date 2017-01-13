@@ -1,0 +1,174 @@
+/* 
+ * Copyright (c) 2014, E-mProvement, All rights reserved.
+ *
+ */
+ 
+/* **************************************** 
+             		MAP						
+   ****************************************	*/
+
+#map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	height: 94%;
+	width: 100%;
+}
+
+@media all and (max-width: 660px){
+	#map {
+		display: none;
+	}
+}
+
+
+/* **************************************** 
+          INSCRITION ET CONNEXION BOX						
+   ****************************************	*/
+
+#authentication_box {
+	position: relative;
+	margin-top: 3%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 660px;
+	z-index: 25;
+	vertical-align:middle;
+}
+
+#main{
+	min-height: 450px;
+	width: 100%;
+	background-color: white;
+	box-shadow: 0 4px 10px #444444;
+}
+
+
+@media all and (max-width: 660px){
+	#authentication_box {
+		margin: 0 0 0 0;
+	}
+	
+	#main{
+		box-shadow: none;
+	}
+}
+
+#logo {
+	float: left;
+	width: 100%;
+	padding: 5px 0 5px 0;
+	margin: 0 0 0 0;
+	text-align: center;
+}
+
+#logo a {
+	margin: 0 auto;
+}
+
+#pitch {
+	float: left;
+	width: 92%;
+	/*min-height: 60px;*/
+	margin: 0 4% 0 4%;
+	padding: 5px 0 5px 0;
+}
+
+#pitch h2 {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	text-align: center;
+	font-size: 21px;
+	font-weight: normal;
+	font-family: arial, sans-serif;
+}
+
+@media all and (max-width: 660px){
+	#pitch h2 {
+		font-size: 18px;
+	}
+}
+
+
+
+/* **************************************** 
+          INSCRITION ET CONNEXION FORM						
+   ****************************************	*/
+
+#inscription_reseaux_sociaux {
+	float: left;
+	width: 70%;
+	padding: 5px 15% 5px 15%;
+	text-align: center;
+}
+
+#facebook {
+	float: left;
+	width: 100%;
+	min-height: 55px;
+	margin: 0 0 0 0;	
+	background-color: #335599;
+}
+
+#facebook:hover {
+	background-color: #5577bb;
+}
+
+#facebook span { 
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	font-family: arial, sans-serif;
+}
+
+.img_connexion {
+	width: 20%;
+	float: left;
+	padding-top: 9px;
+	text-align: center;
+}
+
+.text_connexion {
+	width: 80%;
+	float: right;
+	padding-top: 15px;
+	text-align: center;
+	font-weight: normal;
+}
+
+/*************************************
+ *          LIEN APPLIS              *
+ *************************************/
+#application_ios {
+	float: left;
+	width: 50%;
+	height: 60px;
+	text-align: center;
+	margin-top: 3%; 
+}
+
+#application_android {
+	float: right;
+	width: 50%;
+	height: 60px;
+	text-align: center;
+	margin-top: 3%;
+}
+
+@media all and (max-width: 400px){
+	#application_ios {
+		float: left;
+		width: 100%;
+		margin: 1% 0;
+	}
+
+	#application_android {
+		float: left;
+		width: 100%;
+		margin: 1% 0;
+	}
+}

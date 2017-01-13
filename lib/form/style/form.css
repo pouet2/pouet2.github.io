@@ -1,0 +1,116 @@
+﻿/* 
+ * Copyright (c) 2014, E-mProvement, All rights reserved.
+ *
+ */
+ 
+/*****************************
+ *    FORMULAIRES            *
+ *****************************/
+form {
+	background-color: white;
+}
+
+
+input[type="text"] {
+	width: 120px;
+	height: 22px;
+	margin: 10px 0 0 0;
+	padding: 0 0 0 25px;
+	background: URL(/lib/form/images/pen-black.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+input[type="text"][name="name"]:focus, input[type="text"][name="firstname"]:focus  {
+	background: URL(/lib/form/images/pen-orange.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	border-bottom: 1px solid #f08000;
+	color: #f08000;
+}
+
+
+input[type="text"][name="name"], input[type="text"][name="firstname"] {
+	background: URL(/lib/form/images/user-black.png) no-repeat scroll 0px 0px;
+}
+
+input[type="text"][name="name"]:focus, input[type="text"][name="firstname"]:focus  {
+	background: URL(/lib/form/images/user-orange.png) no-repeat scroll 0px 0px;
+}
+
+input[type="email"] {
+	width: 240px;
+	height: 22px;
+	margin-top: 10px;
+	padding: 0 0 0 25px;
+	background: URL(/lib/form/images/@-black.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+input[type="email"]:focus {
+	background: URL(/lib/form/images/@-orange.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	border-bottom: 1px solid #f08000;
+	color: #f08000;
+}
+
+input[type="password"] {
+	background: URL(/lib/form/images/lock-black.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	width: 240px;
+	height: 22px;
+	margin-top: 10px;
+	padding: 0 0 0 25px;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+input[type="password"]:focus {
+	background: URL(/lib/form/images/lock-orange.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	border-bottom: 1px solid #f08000;
+	color: #f08000;
+}
+
+/* Espace pour le "Mot de passe oublié" */
+#connexion input[type="password"] {
+	width: 220px;
+}
+
+input[type="submit"] {
+	width: 240px;	
+	height: 35px;
+	margin: 10px 0;
+	color: white;
+	background-color: #f08000;
+	border: none;
+}
+
+input[type="submit"]:hover {
+	background-color: #ffaa00;
+}
+
+input[type="submit"]:active {
+	background-color: black;
+}
+
+textarea {
+	background: URL(/lib/form/images/pen-black.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	margin-top: 10px;
+	padding: 0 0 0 25px;
+	border: none;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+}
+
+textarea:focus {
+	background: URL(/lib/form/images/pen-orange.png) no-repeat scroll 0px 0px;
+	background-color: white;
+	border-bottom: 1px solid #f08000;
+	border-right: 1px solid #f08000;
+	color: #f08000;
+}
+

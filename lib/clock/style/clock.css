@@ -1,0 +1,16 @@
+
+#clocks {
+	z-index: 10;
+    position: absolute;
+    top: 4%;
+    right: 3%;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;    
+}
+
+@media all and (max-width:1024px){
+	#clocks {
+		display: none;
+	}
+}

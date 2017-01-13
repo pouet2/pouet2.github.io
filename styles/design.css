@@ -1,0 +1,541 @@
+﻿/* 
+ * Copyright (c) 2014, E-mProvement, All rights reserved.
+ *
+ */
+
+/* ******** RESET CSS ********  */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+:focus {
+	outline: 0;
+}
+
+
+/* ******** PAGE ********  */
+html {
+	width: 100%;
+	height: 100%;
+	font-size: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0; 
+	float:left;
+	width:100%;
+	height:100%;
+	font-family : Arial, Helvetica, FreeSans, sans-serif;
+	font-size : .8em; 
+	line-height : 1.4; /* � adapter au design. (4) */
+	color: black;
+	background: #ffffff;
+	text-align: left;
+	font-family: Arial, Helvetica, FreeSans, sans-serif;
+	font-size: .8em;
+	line-height: 1.4;
+}
+
+/* ******** TITLES ********  */
+h1,h2,h3,h4,h5,h6 {
+	margin: 1em 0 .5em 0;
+	line-height: 1.2;
+	font-weight: bold;
+	font-style: normal;
+}
+
+h1 {
+	font-size: 36px;
+	color: black;
+	text-align: center;
+	padding: 10px 0;
+}
+
+h2 {
+	font-size: 26px;
+	color: black;
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 16px;
+	color: black;
+	font-weight: normal;
+}
+
+p {
+	font-size: 13px;
+	color: black;
+}
+
+
+
+
+/* ******** LIST ********  */
+ul,ol {
+	margin: .75em 0 .75em 32px;
+	padding: 0;
+	list-style: none;
+}
+
+ul {
+	list-style: square;
+}
+
+ol {
+	list-style: decimal;
+}
+
+/* ******** PARAGRAPH ********  */
+p {
+	margin: .75em 0;
+}
+
+p img {
+	padding: 0;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+address {
+	margin: .75em 0;
+	font-style: normal;
+}
+
+/* ******** SEPARATORS ********  */
+hr {
+	color: #dcdcdb;
+	background-color: #dcdcdb;
+	height: 1px;
+	border: 0px;
+}
+
+
+/* ******** LINKS ********  */
+a,a:link,a:visited {
+	text-decoration: underline;
+	color: #375187;
+	text-decoration: none;
+}
+
+a:hover,a:focus,a:active {
+	color: #52942c;
+	text-decoration: underline;
+}
+
+
+a img {
+	border: none;
+}
+
+/* ******** INLINE ELEMENTS ********  */
+em {
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
+}
+
+small {
+	font-size: 0.9em;
+}
+
+strike,small,del {
+	color: #777;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+ins {
+	text-decoration: none;
+}
+
+acronym,abbr,span.caps {
+	cursor: help;
+	letter-spacing: .07em;
+}
+
+acronym,abbr {
+	letter-spacing: .07em;
+	cursor: help;
+	border-bottom: 1px dashed #999;
+}
+
+/* ******** FORMS ********  */
+form,fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+input,button,select {
+	vertical-align: middle;
+}
+
+/* ******** TABLE ********  */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table td {
+	padding: 6px 8px;
+	vertical-align: middle;
+	border: 1px solid #d9d9d9;
+}
+
+table th {
+	text-align: left;
+	vertical-align: middle;
+	padding: 6px 8px;
+	border: 1px solid #d9d9d9;
+	background: #ebebeb;
+	font-weight:bold;
+}
+
+table td img {
+	padding: 3px 8px;
+	text-align: center;
+}
+
+
+/* ******** GENERAL ELEMENTS ********  */
+.left {
+	text-align: left;
+}
+
+.right {
+	text-align: right;
+}
+
+.center {
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.error {
+	color: red;
+}
+
+.msg {
+	color: green;
+}
+
+.info {
+	color: blue;
+}
+
+.big {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.verybig {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+
+/* ******** TOASTER ********  */
+.toast-container {
+	position: fixed;
+	text-align: center;
+	background-color: #444444;
+	border: 2px solid #666666;
+	padding: 5px;
+	color: #ffffff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+/* ******** CONTAINER ********  */
+#container {
+	height: 100%;
+	margin-bottom: -38px;
+}
+
+#container-header, #container-menu, #container-content, #container-footer {
+	width: 100%;
+	margin: 0;
+	float: left;
+}
+
+#container-header {
+	position: fixed;
+ 	z-index: 999;
+	background-color: #343839;
+}
+
+#container-menu {
+	float: left;
+	height: 50px;
+}
+	
+#container-content {
+	background: none;
+	z-index: 1;
+}
+
+
+/* **************************************** 
+            MENU						
+   ****************************************	*/
+#menu {
+	float:left;
+	width:100%;
+	position: fixed;
+	top: 0px;
+	min-height: 43px;
+	margin:0 0;
+	padding:0 0;
+	background-color: white;
+	border-bottom: 2px solid #f08000;
+}
+
+#menu ul {
+	float:right;
+	list-style:none;
+	width:75%;
+	margin: 0 5% 0 0;
+	padding: 3px 0 0 0;
+}
+
+#menu ul li {
+	display: inline;
+	width: 10%;
+	min-width: 110px;
+	float: right;
+	padding: 0 15px;
+}
+
+#menu a, #menu a:visited, #menu a:active {
+    font-family:arial,sans-serif;
+	font-size: 20px;
+	color: #dddddd;
+	display: block;
+	text-align: center;
+	text-decoration:none;
+	outline:none;
+	line-height:38px;
+}
+
+
+#menu ul li a, #menu ul li a:visited {
+	color: black;
+	font-size: 13px;
+	margin: 0 1% 0 1%;
+	padding: 0 0 0 0;
+	text-align: center;
+	background: URL(/images/icon/user-black.png) no-repeat 0 7px;
+}
+
+#menu ul li a:hover {
+	text-decoration: none;
+	color: #f08000;
+	font-size: 13px;
+}
+
+
+.icon {
+	height: 20px;
+	width: 20px;
+}
+
+#current_tab {
+	float: left;
+	width: 100%;
+	min-width: 1140px;
+	line-height: 50px;
+}
+
+#current_tab p {
+	text-align: right;
+	font-family: Impact,Helvetica,Arial,sans-serif;
+	font-size: 40px;
+	margin: 0 2.5% 0 0;
+	color: white;
+}
+
+
+
+
+#logo {
+	float:left;
+	width:20%;
+	text-align:center;
+}
+
+#logo img {
+	margin:0 0 0 0;
+	padding:5px 0 5px 0;
+}
+
+
+#menu ul li #menu-e-lico{
+	background: URL(/images/icon/user-black.png) no-repeat 10px 7px;
+}
+
+#menu ul li #menu-e-lico:hover{
+	background: URL(/images/icon/user-orange.png) no-repeat 10px 7px;
+}
+
+#menu ul li #menu-team{
+	background: URL(/images/icon/team-black.png) no-repeat 0 7px;
+}
+
+#menu ul li #menu-team:hover{
+	background: URL(/images/icon/team-orange.png) no-repeat 0 7px;
+}
+
+#menu ul li #menu-contact{
+	background: URL(/images/icon/@-black.png) no-repeat 10px 7px;
+}
+
+#menu ul li #menu-contact:hover{
+	background: URL(/images/icon/@-orange.png) no-repeat 10px 7px;
+}
+
+#menu ul li #menu-press{
+	background: URL(/images/icon/press-black.png) no-repeat 10px 7px;
+}
+
+#menu ul li #menu-press:hover{
+	background: URL(/images/icon/press-orange.png) no-repeat 10px 7px;
+}
+
+#menu ul li #menu-social{
+	background: URL(/images/icon/share-black.png) no-repeat 10px 7px;
+}
+
+#menu ul li #menu-social:hover{
+	background: URL(/images/icon/share-orange.png) no-repeat 10px 7px;
+}
+
+
+/* ******** CONTENT ********  */
+#content {
+	width: 100%;
+	padding: 50px 0 38px 0;	/*largeur du header et du footer*/
+	margin: 0;
+	background: white;
+	position: relative;
+}
+
+.content-left {
+	margin-right: 265px;
+}
+.content-right {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	width: 265px;
+}
+
+
+
+
+
+/* ******** FOOTER HOMEPAGE ********  */
+#container-footer {
+	min-height: 6%;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    background-color: black;
+}
+
+@media all and (max-width: 500px){
+	#container-footer {
+		position: relative;
+		float: left;
+		width: 100%;
+	}	
+}
+
+#footer {
+	font-size: 12px;
+	font-weight: bold;
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+#footer ul {
+	list-style: none;
+	width: 100%;
+	padding-top: 5px;
+} 
+
+#footer ul li {
+	float: left;
+	margin: 0 auto 0 auto;
+	padding: 0 0 0 0;
+	width: 25%;
+}
+
+@media all and (max-width: 540px){
+	#footer li {
+		float: left;
+		width: 100%;
+		margin: 1% 0 1% 0;
+	}
+}
+
+#footer li a, #footer li a:visited, #footer a:link, #footer a:active {
+	display: block;
+	color: white;
+	text-align: center;
+}
+
+#footer li a:hover {
+	color: #f08000;
+	text-decoration: none;
+}
+
+#select_language {
+	height: 100%;
+}
+
+#select_language select {
+	margin: 0 auto 0 auto;
+	color: white;
+	background-color: black;
+	border: none;
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+}
+
+#select_language select:hover {
+	color: #f08000;
+}
+
+#select_language option {
+	height: 20px;
+	color: black;
+	background-color: white;
+}
+
+#select_language option:hover {
+	background-color: #f08000;
+}
+

@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /lib/
+Disallow: /includes/
+Disallow: /styles/
+Disallow: /lang/
+Disallow: /js/
+Sitemap: http://www.e-lico.net/sitemap.xml

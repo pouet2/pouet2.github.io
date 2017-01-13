@@ -1,0 +1,343 @@
+/* 
+ * Copyright (c) 2014, E-mProvement, All rights reserved.
+ *
+ */
+
+/* **************************************** 
+             		MENU						
+   ****************************************	*/
+#menu {
+	/* Pour éviter que la carte ne passe au dessus du menu */
+	z-index: 10;	
+}
+
+@media all and (max-width: 600px){
+	.menu_title {
+		/* display: none; */
+	}
+	
+	#menu ul li {
+		width: 20px;
+	}
+}
+
+
+
+
+ 
+/* **************************************** 
+             		THEME						
+   ****************************************	*/
+
+.theme_pair {
+	width: 100%;
+	float: left;
+	background-color: #ffeecc;
+	padding: 10px 0;
+}
+
+.theme_impair {
+	width: 100%;
+	float: left;
+	background-color: #ffffff;
+	padding: 20px 0;
+}
+
+.theme_black {
+	width: 100%;
+	float: left;
+	background-color: #111111;
+	color: white;
+	padding: 20px 0;
+}
+
+.theme_grey {
+	width: 100%;
+	float: left;
+	background-color: #eeeeee;
+	padding: 20px 0;
+}
+
+.theme_orange {
+	width: 100%;
+	float: left;
+	background-color: #f08000;
+	color: white;
+	padding: 20px 0;
+}
+
+.theme_black h1, .theme_black h2, .theme_black h3, .theme_black p {
+	color: white;
+}
+
+.theme_orange h1, .theme_orange h2, .theme_orange h3, .theme_orange p {
+	color: white;
+}
+
+
+/* **************************************** 
+             		E-LICO						
+   ****************************************	*/
+#e-lico {
+	max-width: 950px;
+	width: 96%;
+	margin: 43px auto 0 auto;
+	padding: 0 2%;
+}
+
+#carroussel {
+	margin: 5px auto;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#engagement {
+	width: 100%;
+	min-height: 250px;
+	margin-top: 30px;
+	font-size: 26px;
+	text-align: center;
+}
+
+.engagement {
+	width: 21%;
+	margin: 10px 2%;
+	float: left;
+}
+
+@media all and (max-width: 600px){
+	.engagement {
+		width: 100%;
+		margin: 10px auto;
+		text-align: center;
+	}
+}
+
+#figure {
+	width: 100%;
+	margin: 10px 0;
+}
+
+.figure_box {
+	width: 48%;
+	margin: 5px 0.5%;
+	padding: 0 0.5%;
+	background-color: #fcfcfc;
+	float: left;
+	text-align: center;
+}
+
+.figure_graph {
+	height: 300px;
+}
+
+@media all and (max-width: 600px){
+	.figure_box {
+		width: 98%;
+		height: 360px;
+		margin: 0 0.5%;
+		padding: 0 0.5%;
+	}
+}
+
+#historique {
+	float: left;
+	width: 100%;
+	min-width: 300px;
+	height: 200px;
+	margin: 5px 0;
+	padding: 0 0;
+	text-align: center;
+	background-color: #fcfcfc;
+}
+
+#references {
+	width: 100%;
+	margin: 20px 0;
+}
+
+.reference {
+	float: left;
+	width: 25%;
+	height: 170px;
+	text-align: center;
+}
+
+#sponsors {
+	width: 100%;
+	margin: 20px 0;
+}
+
+.sponsor {
+	float: left;
+	width: 25%;
+	height: 170px;
+	text-align: center;
+}
+
+
+
+/* **************************************** 
+             		TEAM						
+   ****************************************	*/
+#team {
+	max-width: 950px;
+	width: 96%;
+	margin: 0 auto;
+	padding: 0 2%;
+}
+
+.membre {
+	width: 100%;
+	min-height: 200px;
+}
+
+.photo_profil_membre {
+	width: 25%;
+	float: left;
+	margin: 5px auto;
+	text-align: center;
+}
+
+.presentation_membre {
+	width: 75%;
+	float: right;
+	padding: 0 0;
+	text-align: justify;
+}
+
+@media all and (max-width: 700px){
+	.photo_profil_membre {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.presentation_membre {
+		width: 100%;
+		text-align: center;
+	}
+}
+
+
+/* **************************************** 
+             		PRESSE						
+   ****************************************	*/
+#press {
+	max-width: 950px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 2%;
+}
+
+#communique_de_presse a:link, #communique_de_presse a:visited {
+	color: white;
+}
+
+.news, .news a:link, .news a:visited {
+	width: 100%;
+	margin: 10px 0;
+	height: 100px;
+	color: white;
+}
+
+
+.journal_logo {
+	float: left;
+	width: 30%;
+}
+
+.news_contents {
+	float: right;
+	width: 70%;
+}
+
+
+#press_logos img {
+	width: 200px; 
+}
+
+
+/* **************************************** 
+             		CONTACT						
+   ****************************************	*/
+#contact {
+	max-width: 950px;
+	width: 96%;
+	margin: 0 auto;
+	padding: 0 2%;
+}
+
+#map {
+	position: relative;
+	width: 100%;
+	height: 400px;
+	margin: 0 0;
+	padding: 0 0;
+}
+
+@media all and (max-width: 400px){
+	#map {
+		display: none;
+	}
+}
+
+#contact form {
+	padding: 20px auto;
+	text-align: center;
+}
+
+#contact input[type="email"], #contact input[type="text"] {
+	width: 320px;
+	margin: 10px auto;
+}
+
+#contact input[type="submit"] {
+	width: 320px;
+	float: center;
+	margin: 10px auto;	
+}
+
+#contact input[type="text"][name="firstname"], #contact input[type="text"][name="name"] {
+	width: 160px;
+	margin-top: 20px;
+}
+
+
+@media all and (max-width: 660px){
+	#contact input[type="text"][name="firstname"], #contact input[type="text"][name="name"] {
+		width: 320px;
+	}
+}
+
+
+/***************************************
+ *           SOCIAL
+ ***************************************/
+#social {
+	max-width: 950px;
+	width: 100%;
+	height: 160px;
+	margin: 0 auto;
+	padding: 0 2%;
+}
+
+.about_social_link {
+	float: left;
+	width: 12%;
+	padding: 0 2%;
+	text-align: center;
+}
+
+
+/***************************************
+ *           FOOTER
+ ***************************************/
+ 
+#container-footer {
+	position: relative;
+	float: left;
+	margin: 0 0;
+	width: 100%;
+	height: 6%;
+}
+

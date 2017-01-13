@@ -1,0 +1,246 @@
+/* 
+ * Copyright (c) 2014, E-mProvement, All rights reserved.
+ *
+ */
+ 
+ 
+/**
+ * ORANGE : #f08000 / #ffaa22 / #ffcc55
+ *
+ */
+ 
+/* **************************************** 
+             		MAP						
+   ****************************************	*/
+
+#map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+
+
+/* **************************************** 
+             		MENU						
+   ****************************************	*/
+#menu-login {
+	position: relative;
+	top: 0;
+	width: 50%;
+	min-width: 600px;
+	min-height: 44px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f08000;
+	z-index:10;
+}
+
+#logo {
+	float: left;
+	width: 15%;
+	min-width: 30px;
+	text-align: center;
+}
+
+#logo img {
+	margin:0 0 0 0;
+	padding: 4px 0 4px 0;
+}
+
+#menu-login ul {
+	float:left;
+	width:63%;
+	min-height: 44px;
+	margin: 0 1% 0 1%;
+	padding: 0 0 0 0;
+}
+
+#menu-login ul li {
+	float: left;
+	width: 22%;
+	height: 32px;
+	margin: 0 0 0 0;
+	padding: 6px 1% 6px 1%;
+	text-align: center;
+}
+
+#menu-login ul li:hover {
+	background-color: #ffaa22;
+}
+
+#menu-login ul li a, #menu-login ul li a:visited {
+	color: white;
+	font-size: 16px;
+	text-align: center;
+}
+
+#menu-login ul li a:hover {
+	text-decoration: none;
+}
+
+
+#menu-login ul li #menu-map{
+	background: URL(/images/icon/map-small.png) no-repeat 10px 7px;
+}
+
+#menu-login ul li #menu-calendar{
+	background: URL(/images/icon/calendar-small.png) no-repeat 10px 7px;
+}
+
+#menu-login ul li #menu-contacts{
+	background: URL(/images/icon/user-black.png) no-repeat 10px 7px;
+}
+
+#menu-login ul li #menu-parameters{
+	background: URL(/images/icon/param-small.png) no-repeat 10px 7px;
+}
+
+
+
+/* **************************************** 
+             		USER MENU						
+   ****************************************	*/
+#user_personnalization {
+	width: 16%;
+	min-height: 36px;
+	margin: 4px 2% 4px 2%;
+	float:left;
+}
+
+
+
+
+
+
+/* **************************************** 
+             MAP NAVIGATION						
+   ****************************************	*/
+#map_navigation {
+	position: absolute;
+	left: 0;
+	z-index: 10;
+	margin-top: 3%;
+	width: 378px;
+	color: white;
+	text-align: center;
+	font-size: 15px;
+}
+
+#map_services_navigation {
+
+}
+
+.map_service {
+	float: left;
+	height: 40px;
+	width: 54px;
+	background-color: #cccccc;
+	padding-top: 10px;
+}
+
+.map_service:hover{
+	background-color: black;
+}
+
+.sous_menu_map_service {
+	display: none;
+}
+
+
+#social_groups {
+	margin: 50px 0 0 0;
+	height: 350px;
+}
+
+.group {
+	float: left;
+	width: 100%;
+	height: 30px;
+	padding: 7px 0 0 0;
+}
+
+
+
+#family {
+	background-color: #5B8CFF;
+}
+
+#family:hover {
+	background-color: #4488FF;
+}
+
+#friends {
+	background-color: #4BE885;
+}
+
+#friends:hover {
+	background-color: #44ff44;
+}
+
+#follow {
+	background-color: #FFF35F;
+}
+
+#follow:hover {
+	background-color: #EEDD22;
+}
+
+#knowlegment {
+	background-color: #0088ff;
+}
+
+#knowlegment:hover {
+	background-color: #44bbff;
+}
+
+/*
+#friends_caen {
+	background-color: #F0945F;
+}
+
+#friends_caen:hover {
+	background-color: #FFAA66;
+}
+
+#friends_blois {
+	background-color: #EE52FF;
+}
+
+#friends_blois:hover {
+	background-color: #FF66DD;
+}
+*/
+
+.sous-groupe{
+	display: none;
+}
+
+#param {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 10;
+	width: 600px;
+	height: 800px;
+	background-color: white;
+	color: black;
+	padding : 1% 1%;
+}
+
+#first_connexion {
+	position: absolute;
+	width: 20%;
+	height: 30%;
+	bottom: 35%;
+	right: 40%;
+	padding : 1% 1%;
+	z-index: 10;
+	background-color: white;
+	color: black;
+}

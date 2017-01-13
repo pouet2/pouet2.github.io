@@ -1,0 +1,93 @@
+/* 
+ * Copyright (c) 2014, E-mProvement, All rights reserved.
+ *
+ */
+ 
+/* **************************************** 
+          INSCRITION ET CONNEXION FORM						
+   ****************************************	*/
+#inscription {
+	float: left;
+	display: block;
+	height: 90px;
+	width: 46%;
+	min-width: 240px;
+	padding: 0 2% 0 2%;
+	text-align: center;
+}
+
+#connexion {
+	float: right;
+	display: block;
+	height: 90px;
+	width: 46%;
+	min-width: 240px;
+	padding: 0 2% 0 2%;
+	text-align: center;
+}
+
+#connexion h3, #inscription h3 {
+	text-align: center;
+	font-weight: bold;
+}
+
+@media all and (max-width: 540px){
+	#inscription {
+		width: 100%;
+		margin: 0 auto 0 auto;
+	}
+
+	#connexion {
+		width: 100%;
+		margin: 10% auto 0 auto;
+	}
+}
+
+
+/*****************************
+ *    PASSWORD FORGOTTEN     *
+ *****************************/
+
+#password_forgotten {
+	float: right;
+	height: 22px;
+	width: 20px;
+	margin: 10px 32px 0px -32px; /* Pour décaler un peu plus bas et à gauche la case. */
+	background-color: black;
+	color: white;
+}
+
+#password_forgotten a {
+	color: white;
+	text-decoration: none;
+}
+
+#password_forgotten:hover {
+	background-color: #555555;
+}
+
+#password_forgotten a:hover {
+	color: white;
+	text-decoration: none;
+	margin-top: 10px;
+}
+
+
+/* TOOLTIP */
+.tooltip span {
+    z-index: 10;
+    display: none;
+    padding: 10px 10px;
+    margin-top: -15px;
+    margin-left: 28px;
+    width: 150px;
+    line-height: 16px;
+}
+
+.tooltip:hover span{
+    display: inline;
+    position: absolute;
+    color: white;
+    background-color: black;
+}
+	

@@ -1,0 +1,68 @@
+/* 
+ * Copyright (c) 2014, E-mProvement, All rights reserved.
+ *
+ */
+
+
+/* **************************************** 
+            TEXTE LEGAL						
+   ****************************************	*/
+#main {
+	width: 100%;
+	max-width: 950px;
+	margin: 45px auto 0 auto;
+	padding: 0 2%;	
+}
+
+.article {
+	width: 100%;
+	max-width: 950px;
+	min-height: 50px;
+}
+
+.titre {
+	width: 100%;
+	float: left;
+	text-align: left;
+	margin: 0 0;
+	padding: 0 0;
+}
+
+.contenu {
+	width: 60%;
+	min-height: 50px;
+	float: right;
+	text-align: justify;
+	margin: 0 0;
+	padding: 0 0;
+}
+
+@media all and (max-width: 700px){
+	.titre {
+		width: 100%;
+	}
+	
+	.contenu {
+		width: 100%;
+	}
+}
+
+
+#container-footer {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+
+/***************************************
+ *           FOOTER
+ ***************************************/
+ 
+#container-footer {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 5%;
+}
+
