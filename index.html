@@ -1,0 +1,119 @@
+<html>
+<head>
+	<meta charset="UTF-8" />
+
+	<title>Ethereum Monitoring - Smootihe | Mubiz</title>
+	<meta name="description"    content=""/>
+	<meta name="keywords"       content=""/>
+	
+	<meta name="robots"         content="index,follow"/>
+	<meta name="rating"         content="safe for kids"/>
+	<meta name="revisit-after"  content="14 days"/>
+	<meta name="author"         content="Mubiz"/>
+
+	<meta name="geo.placename"	content="France"/>
+
+	<meta property="og:type"		content="website"/>
+	<meta property="og:site_name"	content="GitHub - Albin CAUDERLIER"/>
+	<meta property="og:locale"		content="fr_FR"/>
+
+	<meta name="theme-color" content="#009999">
+	
+	<link rel="shortcut icon"   					type="image/ico"	href="/images/favicon.png" 	/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi"/>
+	
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/ethereum.js" defer></script>
+	
+	<link rel="stylesheet"    		media="all"		type="text/css" 	href="/style/style_screen.css"   />
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet"    		media="all"		type="text/css" 	href="http://v4-alpha.getbootstrap.com/examples/navbar-top-fixed/navbar-top-fixed.css"   />
+	
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="/" class="navbar-brand" rel="home" title=""><img style="max-width:100px;" src="../images/mubiz/mubiz-logo-white.png" alt="Mubiz logo"/></a>
+			</div>
+			<div class="navbar-collapse collapse" id="navbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a title="Smoothie">Smoothie</a></li>
+					<li><a href="/mubiz/bitcoin/" title="TP 4A">Mubiz Bitcoin</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+			<h1>Monitoring Ethereum Nodes</h1>
+			<h2>Objectif</h2>
+			<p>
+				Fournir une interface de suivi de l'état des nodes Ethereum de Smoothie.
+			</p>
+		</div>
+
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="#prod" title="Production">Production</a></li>
+						<li><a href="#test" title="Test">Test</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="page-header" id="prod">
+			<h2>Production</h2>
+		</div>
+	
+		<div class="page-header" id="test">
+			<h2>Test</h2>
+		</div>
+		<div id="" class="col-md-4">
+			<h3>Block Number</h3>
+			<span class="label label-primary" id="block_number"></span>
+		</div>
+		<div id="" class="col-md-4">
+			<h3>Syncing</h3>
+			<span class="label label-primary" id="syncing"></span>
+		</div>
+		<div id="" class="col-md-4">
+			<h3>Accounts</h3>
+			<span class="label label-primary" id="accounts"></span>
+		</div>
+		<div id="" class="col-md-4">
+			<h3>Default Account</h3>
+			<span class="label label-primary" id="default_account"></span>
+		</div>
+		<div id="" class="col-md-4">
+			<h3>Mining</h3>
+			<span class="label label-primary" id="mining"></span>
+		</div>
+		<div id="" class="col-md-4">
+			<h3>Peer Count</h3>
+			<span class="label label-primary" id="peer_count"></span>
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<a href="http://mubiz.com" title="Made by Albin CAUDERLIER for Mubiz">(c) Mubiz</a>
+			<ul class="footer-list">
+				<li class="footer-list-item"><a href="http://mubiz.com">Mubiz</a></li>
+				<li class="footer-list-item"><a href="http://mubiz.com/about">A propos de Mubiz</a></li>
+				<li class="footer-list-item"><a href="http://mubiz.com/developers">API de Mubiz</a></li>
+			</ul>
+		</div>
+	</footer>
+	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+</html>
