@@ -84,6 +84,13 @@ function apiGet(url) {
 
 function output(inp) {
     document.getElementById('apiReturn').appendChild(document.createElement('pre')).innerHTML = inp;
+
+    var count = document.querySelectorAll("#apiReturn > pre").length;
+
+    if (count > 1) {
+        document.getElementById('apiReturn').firstChild.remove();
+    }
+    
 }
 
 function jsonPrettify(json) {
@@ -119,7 +126,7 @@ function addNavigationLink(data) {
             data = '<a href="javascript:getTx(\'' + data + '\')">"' + data + '"</a>';
             break;
         case "isAddress":
-            data = '<a href="javascript:getAddress(\'' + data + '\'")>"' + data + '"</a>';
+            data = '<a href="javascript:getAddress(\'' + data + '\')">"' + data + '"</a>';
             break;
         case "isBlockNb":
             data = '<a href="javascript:getBlockHeight(\'' + data + '\')">"' + data + '"</a>';
