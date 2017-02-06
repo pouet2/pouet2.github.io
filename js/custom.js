@@ -1,15 +1,11 @@
-//18xuCetrm5mWcndvUABRJmbzkBDsiRPuiv
-//0000000000000000028599c95924fec0ec49c4d8029180016a4130fe0a812105
-//44818bc867a2f25881aa5b4e53e5831e9a9df0799c4e281bed1bb186ea21e426
-
-function research(o){
-    var data = document.getElementById(o).value;
-    //var isHash = /^[0-9a-f]{64}$/.test(data);
-    //var isAddress = /^[0-9a-zA-Z]{34}$/.test(data);
-    //var isBlockNb = /^[0-9]{6}$/.test(data);
+// Déclenché quand researchInput est entré.
+function research(formInput){
+    var data = document.getElementById(formInput).value;
     var test = identifyDataType(data);
 
-    if(test == "isBlockHash"){
+    if(test == false){
+        document.getElementById("apiReturn").innerHTML = "veuillez entrer une Tx, une addresse, un hash de block ou transaction valide";
+    } else if(test == "isBlockHash"){
         getBlockHash(data);
     } else if (test == "isTx") {
         getTx(data);
@@ -17,11 +13,10 @@ function research(o){
         getAddress(data);
     } else if(test == "isBlockNb"){
         getBlockHeight(data);
-    } else {
-        document.getElementById("apiReturn").innerHTML = "veuillez entrer une Tx, une addresse, un hash de block ou transaction valide";
     }
 }
 
+// Retourne le type de data entré ou retourne false
 function identifyDataType(data){
     var isHash = /^[0-9a-f]{64}$/.test(data);
     var isAddress = /^[0-9a-zA-Z]{34}$/.test(data);
@@ -43,8 +38,11 @@ function identifyDataType(data){
             return "isTx";
         }
     }
+
+    return false;
 }
 
+// Prépare l'url pour les call d'api
 function getBlockHash(blockHash) {
     var url = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockHash;
     apiGet(url);
@@ -65,7 +63,7 @@ function getTx(tx){
     apiGet(url);
 }
 
-
+// Execute le call api
 function apiGet(url) {
     var request = new XMLHttpRequest();
 
@@ -73,7 +71,7 @@ function apiGet(url) {
         if (this.readyState == 4 && this.status == 200) {
             // met en string puis parse la réponse retournée
             var myObj = JSON.stringify(JSON.parse(this.responseText),null,2);
-            //document.getElementById("apiReturn").innerHTML = myObj;
+
             output(jsonPrettify(myObj));
         }
     };
@@ -82,21 +80,28 @@ function apiGet(url) {
     request.send();
 }
 
+// Affiche le résultat du call api
 function output(inp) {
     document.getElementById('apiReturn').appendChild(document.createElement('pre')).innerHTML = inp;
 
     var count = document.querySelectorAll("#apiReturn > pre").length;
 
     if (count > 1) {
-        document.getElementById('apiReturn').firstChild.remove();
+        for (count; count > 1; count--){
+            document.getElementById('apiReturn').firstChild.remove();
+        }
+        
     }
     
 }
 
+// Améliore le rendu du call api
 function jsonPrettify(json) {
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        
         var cls = 'number';
+        
         if (/^"/.test(match)) {
             if (/:$/.test(match)) {
                 cls = 'key';
@@ -108,118 +113,30 @@ function jsonPrettify(json) {
         } else if (/null/.test(match)) {
             cls = 'null';
         }
+
         match = addNavigationLink(match);
-        //console.log(match);
+
         return '<span class="' + cls + '">' + match + '</span>';
     });
 }
 
+// Ajoute des liens de navigation au rendu du call api
 function addNavigationLink(data) {
     data = data.replace(/"/g, "");
     var test = identifyDataType(data);
-    //console.log(test);
-    switch (test){
-        case "isBlockHash":
-            data = '<a href="javascript:getBlockHash(\'' + data + '\')">"' + data + '"</a>';
-            break;
-        case "isTx":
-            data = '<a href="javascript:getTx(\'' + data + '\')">"' + data + '"</a>';
-            break;
-        case "isAddress":
-            data = '<a href="javascript:getAddress(\'' + data + '\')">"' + data + '"</a>';
-            break;
-        case "isBlockNb":
-            data = '<a href="javascript:getBlockHeight(\'' + data + '\')">"' + data + '"</a>';
-            break;
-        default:
-            data = '"' + data + '"';
-    }
 
-    return data
-
-}
-
-
-
-
-/*
-// research fonction for Bitcoin block, tx & address
-function research(o){
-    var data = document.getElementById(o).value;
-    var isHash = /^[0-9a-f]{64}$/.test(data);
-    var isAddress = /^[0-9a-zA-Z]{34}$/.test(data);
-    var isBlockNb = /^[0-9]{6}$/.test(data);
-    
-    console.log(data);
-    if(isHash == true){
-        var isBlockHash = data.substring(0,10);
-        if(isBlockHash == "0000000000"){
-            console.log('blockhash');
-            getBlockHash(data);
-        } else {
-            getTx(data);
-        }
-    } else if(isAddress == true){
-        getAddress(data);
-    } else if(isBlockNb == true){
-        getBlockHeight(data);
+    if(test == false || test == "isBlockNb"){
+        data = '"' + data + '"';
     } else {
-        document.getElementById("apiReturn").innerHTML = "veuillez entrer une Tx, une addresse, un hash de block ou transaction valide";
-    }
-}
-
-function getBlockHash(blockHash) {
-    var url = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockHash;
-    apiGet(url);
-}
-
-function getBlockHeight(blockHeight){
-    var url = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockHeight;
-    apiGet(url);
-}
-
-function getAddress(address){
-    var url = "https://api.blockcypher.com/v1/btc/main/addrs/" + address;
-    apiGet(url);
-}
-
-function getTx(tx){
-    var url = "https://api.blockcypher.com/v1/btc/main/txs/" + tx;
-    apiGet(url);
-}
-
-
-function apiGet(url) {
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            // met en string puis parse la réponse retournée
-            var myObj = JSON.stringify(JSON.parse(this.responseText),null,2);
-            document.getElementById("apiReturn").innerHTML = myObj;
+        if(test == "isBlockHash"){
+            data = '<a href="javascript:getBlockHash(\'' + data + '\')">"' + data + '"</a>';
+        } else if (test == "isTx") {
+            data = '<a href="javascript:getTx(\'' + data + '\')">"' + data + '"</a>';
+        } else if(test == "isAddress"){
+         data = '<a href="javascript:getAddress(\'' + data + '\')">"' + data + '"</a>';
         }
-    };
+    } 
 
-    request.open('GET', url);
-    request.send();
+    return data;
+
 }
-
-/*
-
-// simple get api request 
-var request = new XMLHttpRequest();
-
-request.open('GET', 'http://bitcoin.mubiz.com/block_hash/');
-
-request.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-        // met en string puis parsela réponse retournée
-        var myObj = JSON.stringify(JSON.parse(this.responseText),null,2);
-        document.getElementById("demo").innerHTML = myObj;
-    }
-};
-
-request.send();
-*/
-
-
