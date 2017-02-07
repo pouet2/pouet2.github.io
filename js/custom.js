@@ -9,9 +9,9 @@ function research(formInput){
         getBlockHash(data);
     } else if (test == "isTx") {
         getTx(data);
-    } else if(test == "isAddress"){
+    } else if (test == "isAddress"){
         getAddress(data);
-    } else if(test == "isBlockNb"){
+    } else if (test == "isBlockNb"){
         getBlockHeight(data);
     }
 }
@@ -81,17 +81,16 @@ function apiGet(url) {
 }
 
 // Affiche le résultat du call api
-function output(inp) {
-    document.getElementById('apiReturn').appendChild(document.createElement('pre')).innerHTML = inp;
+function output(json) {
+    // Récupérer les objet du DOM existant déjà
+    var element = document.getElementById('apiReturn');
 
-    var count = document.querySelectorAll("#apiReturn > pre").length;
-
-    if (count > 1) {
-        for (count; count > 1; count--){
-            document.getElementById('apiReturn').firstChild.remove();
-        }
-        
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
     }
+
+    // Ajoute le json dans le DOM
+    document.getElementById('apiReturn').appendChild(document.createElement('pre')).innerHTML = json;
     
 }
 
@@ -116,7 +115,8 @@ function jsonPrettify(json) {
 
         match = addNavigationLink(match);
 
-        return '<span class="' + cls + '">' + match + '</span>';
+        //return '<span class="' + cls + '">' + match + '</span>';
+        return `<span class="${cls}">${match}</span>`;
     });
 }
 
@@ -129,11 +129,11 @@ function addNavigationLink(data) {
         data = '"' + data + '"';
     } else {
         if(test == "isBlockHash"){
-            data = '<a href="javascript:getBlockHash(\'' + data + '\')">"' + data + '"</a>';
+            data = `<a href="javascript:getBlockHash('${data}')">"${data}"</a>`
         } else if (test == "isTx") {
-            data = '<a href="javascript:getTx(\'' + data + '\')">"' + data + '"</a>';
+            data = `<a href="javascript:getTx('${data}')">"${data}"</a>`
         } else if(test == "isAddress"){
-         data = '<a href="javascript:getAddress(\'' + data + '\')">"' + data + '"</a>';
+            data = `<a href="javascript:getAddress('${data}')">"${data}"</a>`
         }
     } 
 
