@@ -115,7 +115,6 @@ function jsonPrettify(json) {
 
         match = addNavigationLink(match);
 
-        //return '<span class="' + cls + '">' + match + '</span>';
         return `<span class="${cls}">${match}</span>`;
     });
 }
