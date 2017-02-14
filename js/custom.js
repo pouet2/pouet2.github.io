@@ -1,6 +1,5 @@
 // global default value of elementID
 var elementID = 'apiReturn';
-var apiResp = {};
 
 // Déclenché quand researchInput est entré.
 function research(_formInput){
@@ -27,26 +26,26 @@ function research(_formInput){
 
 // Retourne le type de data entré ou retourne false
 function identifyDataType(_data){
-    var data = _data;
-    var isHash = /^[0-9a-f]{64}$/.test(data);
-    var isAddress = /^[0-9a-zA-Z]{34}$/.test(data);
-    var isNb = /^[0-9]{1,6}$/g.test(data);
+    var isHash = /^[0-9a-f]{64}$/.test(_data);
+    var isAddress = /^[1-9a-km-zA-HJ-NP-Z^]{34}$/.test(_data);
+    var isNb = /^[0-9]{1,6}$/g.test(_data);
 
     if (isAddress == true) {
         return "isAddress";
     }
 
-    if (isNb == true && data.length > 0 && data.length <= 6) {
-        if (data.length < 6) { 
-            for (var i = data.length; i < 6; i++) {
-                data.slice(0, "0");
+    if (isNb == true && _data.length > 0 && _data.length <= 6) {
+        if (_data.length < 6) { 
+            for (var i = _data.length; i < 6; i++) {
+                _data.slice(0, "0");
             }
         }
         return "isBlockNb";
     }
 
     if (isHash == true) {
-        var isBlockHash = data.substring(0,6);
+        var isBlockHash = _data.substring(0,6);
+
         if (isBlockHash == "000000"){
             return "isBlockHash"; 
         } else {
@@ -84,10 +83,8 @@ function prettyApiGet(_url, _elementID) {
 
     request.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            //output(jsonPrettify(JSON.stringify(JSON.parse(this.responseText),null,2)), _elementID);
-            var rep = JSON.stringify(JSON.parse(this.responseText),null,2);
-            //console.log(rep);
-            output(jsonPrettify(rep), _elementID);
+            // Affiche le JSON retourné par le serveur
+            output(jsonPrettify(JSON.stringify(JSON.parse(this.responseText),null,2)), _elementID);
         }
     };
 
@@ -102,7 +99,10 @@ function apiGetUgly(_url, _elementID) {
     request.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var resp = JSON.stringify(JSON.parse(this.responseText),null,2);
-            resp = /\d{6}/.exec(resp)[0];
+            // valeur à rechercher dans la réponse de l'api
+            var target = 'height';
+            var index = resp.indexOf(target);
+            resp = '<p>' + resp.slice((index + 9), (index + 15)) + '</p>' ;
             document.getElementById(_elementID).innerHTML = resp;
         }
     };
@@ -111,10 +111,9 @@ function apiGetUgly(_url, _elementID) {
     request.send();
 }
 
-
 // Affiche le résultat du call api
 function output(_json, _elementID) {
-    // Récupérer les objet du DOM existant déjà
+    // Récupérer les objet du DOM existant déjà pour les retirer
     var element = document.getElementById(_elementID);
 
     while (element.firstChild) {
@@ -128,27 +127,27 @@ function output(_json, _elementID) {
 // Améliore le rendu du call api
 function jsonPrettify(_json) {
     var json = _json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (_match) {
         
         var cls = 'number';
         
-        if (/^"/.test(match)) {
-            if (/:$/.test(match)) {
+        if (/^"/.test(_match)) {
+            if (/:$/.test(_match)) {
                 cls = 'key';
             } else {
                 cls = 'string';
             }
-        } else if (/true|false/.test(match)) {
+        } else if (/true|false/.test(_match)) {
             cls = 'boolean';
-        } else if (/null/.test(match)) {
+        } else if (/null/.test(_match)) {
             cls = 'null';
         }
 
         if(cls != "key"){
-            match = addNavigationLink(match, json);
+            _match = addNavigationLink(_match, json);
         }
         
-        return `<span class="${cls}">${match}</span>`;
+        return `<span class="${cls}">${_match}</span>`;
     });
 }
 
@@ -165,17 +164,18 @@ function addNavigationLink(_data, _json) {
                 return `<a href="javascript:getBlockHash('${data}')">"${data}"</a>`
         
         } else if (test == "isBlockNb"){
-            // récupération du segment présécent data dans _json
+            // récupération de segments présécent data dans _json
             var index = _json.indexOf(data);
-            var test1 = _json.substr((index - 11), index);
-            var test2 = _json.substr((index - 16), index);
+            var test1 = _json.substr((index - 15), index);
+            var test2 = _json.substr((index - 11), index);
+            var test3 = _json.substr((index - 16), index);
 
-            // Vérification que que ce sont les bons index de l'objet 
+            // Vérification que que ce sont les bons mots clés
             // précent la data que l'on veut vérifier
-            if (/("blocks":)|("height":)/.test(test1) || /("block_height":)/.test(test2)) {
+            if (/("nb":)/.test(test1) |/("blocks":)|("height":)/.test(test2) || /("block_height":)/.test(test3)) {
                 return `<a href="javascript:getBlockHeight('${data}')">"${data}"</a>`
             } else {
-                return `"${data}"`;
+                return data;
             }
         
         } else if (test == "isTx") {
@@ -184,7 +184,6 @@ function addNavigationLink(_data, _json) {
         } else if (test == "isAddress"){
             return `<a href="javascript:getAddress('${data}')">"${data}"</a>`
         }
-    
 }
 
 // Ajout des datas incluse dans <head>
@@ -214,7 +213,7 @@ function addHeadSettings() {
 
 // Ajout de l'ensemble des datas html pour l'affichage de la page 
 function homePageLoading() {
-
+    // réinitialisation du body
     document.getElementsByTagName('body')[0].innerHTML = '';
 
     var body = 
@@ -237,11 +236,9 @@ function homePageLoading() {
             `</div></div>` +
             `<div class="row">` +
                 `<div class="col-lg-12">` +
-                    `<form>` +
-                        `<div class="form-group">` +
-                            `<input type="text" class="form-control" id="researchInput" placeholder="Block Hash, block Height, Tx Hash or BTC address">` +
-                        `</div>` +
-                        `<button type=button class="btn btn-default" onclick="research('researchInput');">Submit</button>` +
+                    `<form action="javascript:research('researchInput');">` +
+                        `<input type="text" class="form-control" id="researchInput" placeholder="Block Hash, block Height, Tx Hash or BTC address">` +
+                        `<button type="submit" class="btn btn-default" id="formBtn">Submit</button>` +
                     `</form>` +
                     `<div id="apiReturn">` +
                         `<div class="row">` +
@@ -250,17 +247,8 @@ function homePageLoading() {
                                 `<div id="infos"></div>` +
                             `</div>` +
                             `<div class="col-lg-6">` +
-                                `<h3>Mining infos</h3>` +
-                                `<div id="miningInfos"></div>` +
-                        `</div></div>` +
-                        `<div class="row">` +
-                            `<div class="col-lg-6">` +
                                 `<h3>Blockchain infos</h3>` +
                                 `<div id="blockchainInfos"></div>` +
-                            `</div>` +
-                            `<div class="col-lg-6">` +
-                                `<h3>Peers infos</h3>` +
-                                `<div id="peerInfo"></div>` +
         `</div></div></div></div></div></div>` +
         `<footer class="footer">` +
             `<div class="container">` +
@@ -276,11 +264,10 @@ function homePageLoading() {
 
     document.getElementsByTagName('body')[0].innerHTML = body;
 
-    apiGetUgly('http://bitcoin.mubiz.com/blocks', 'actualBlockHeight');
+    // Les calls api à exécuter au chargement de la page de l'explorer
+    apiGetUgly('https://api.blockcypher.com/v1/btc/main', 'actualBlockHeight');
     prettyApiGet('https://api.blockcypher.com/v1/btc/main', 'infos');
-    prettyApiGet('http://bitcoin.mubiz.com/blockchaininfo', 'blockchainInfos');
-    prettyApiGet('http://bitcoin.mubiz.com/mininginfo', 'miningInfos');
-    prettyApiGet('http://bitcoin.mubiz.com/peerinfo', 'peerInfo');
+    prettyApiGet('https://btc.blockr.io/api/v1/coin/info', 'blockchainInfos');
 }
 
 function main() {
@@ -298,7 +285,7 @@ function main() {
     addEvent(window , "load", addHeadSettings);
     addEvent(window , "load", homePageLoading);
 
-    function lancer(fct) {
+    function start(fct) {
         addEvent(window, "load", fct);
     }
 
