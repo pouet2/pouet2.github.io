@@ -1,4 +1,0 @@
-
-
-	<!-- Pour connexion via Facebook -->
-	
