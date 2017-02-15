@@ -186,8 +186,29 @@ function addNavigationLink(_data, _json) {
         }
 }
 
-// Ajout des datas incluse dans <head>
+function routing() {
+    var isHomePage =  /github.io\/index.html/.test(window.location.href);
+    var isExplorer = /github.io\/explorer/.test(window.location.href);
+    var isBlog = /github.io\/blog/.test(window.location.href);
+    var resp = [];
+
+    if (isHomePage == true) {
+        resp = ['isHomePage', ''];
+        return resp;
+    } else if (isExplorer == true) {
+        resp = ['isExplorer', '../'];
+        return resp;
+    } else if (isBlog == true) {
+        resp = ['isBlog', '../'];
+        return resp;
+    }
+
+    return false;
+}
+
+// Ajout des datas du <head>
 function addHeadSettings() {
+    var route = routing();
 
     var headElements = `<meta charset="UTF-8" />` + 
         `<meta name="description"    content="A bitcoin block explorer full js client version"/>` +
@@ -200,74 +221,170 @@ function addHeadSettings() {
         `<meta property="og:type"       content="website"/>` +
         `<meta property="og:site_name"  content="GitHub - Tulsene"/>` +
         `<meta property="og:locale"     content="fr_FR"/>` +
-        `<link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>` +
+        `<link rel="shortcut icon" type="image/ico" href="${route[1]}images/favicon.ico"/>` +
         `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">` +
-        `<link rel="stylesheet" href="styles/design.css">`;
-
-    var urlTest = /index/.test(window.location.href)
-    if (urlTest == true) {
+        `<link rel="stylesheet" href="${route[1]}styles/design.css">`;
+ 
+    if (route[0] == 'isHomePage') {
         headElements += `<title>Bitcoin Explorer</title>`;
-    }
+    } else if (route[0] == 'isExplorer') {
+        headElements += `<title>Bitcoin Explorer</title>`;
+    } else if (route[0] == 'isBlog') {
+        headElements += `<title>Bitcoin Explorer</title>`;
+    } 
+
     document.getElementsByTagName('head')[0].innerHTML = headElements;
 }
 
-// Ajout de l'ensemble des datas html pour l'affichage de la page 
-function homePageLoading() {
-    // réinitialisation du body
-    document.getElementsByTagName('body')[0].innerHTML = '';
+// Générateur de la navbar
+function navBlockGenerator(_route) {
+    if (_route[0] == 'isHomePage') {
+        var isActive =['class="active"','',''];
+    } else if (_route[0] == 'isExplorer') {
+        var isActive = ['','class="active"',''];
+    } else if (_route[0] == 'isBlog') {
+        var isActive = ['','','class="active"'];
+    } else {
+        return false;
+    }
 
-    var body = 
+    var navBlock = 
         `<nav class="navbar navbar-inverse navbar-fixed-top">` +
-            `<div class="container">` +
-                `<div class="navbar-header">` +
-                    `<a href="index.html" class="navbar-brand" rel="home" title="">` +
-                        `<img style="max-width:100px;" src="images/mubiz/mubiz-logo-white.png" alt="Mubiz logo">` +
-        `</a></div></div></nav>` +
-        `<div class="container" >` +
-            `<div class="jumbotron">` +
-                `<h1>Bitcoin explorer</h1>` +
-                `<p class="text-center">Faites vos recherches sur la blockchain Bitcoin!</p>` +
-            `</div>` +
-            `<div class="row">` +
+          `<div class="container">` +
+            `<div class="navbar-header">` +
+              `<a href="${_route[1]}index.html" class="navbar-brand" rel="home" title="">` +
+                `<img style="max-width:100px;" src="${_route[1]}images/mubiz/mubiz-logo-white.png" alt="Mubiz logo">` +
+            `</a></div>` +
+            `<div id="navbar" class="collapse navbar-collapse">` +
+              `<ul class="nav navbar-nav">` +
+                `<li ${isActive[0]}>` +
+                  `<a href="${_route[1]}index.html">Home</a>` +
+                `</li>` +
+                `<li ${isActive[1]}>` +
+                  `<a href="${_route[1]}explorer/index.html">Block Explorer</a>` +
+                `</li>` +
+                `<li ${isActive[2]}>` +
+                  `<a href="${_route[1]}blog/index.html">Blog</a>` +
+                `</li>` +
+        `</ul></div></div></nav>`;
+
+    document.getElementById('navBlock').innerHTML = navBlock;
+
+    return true;
+}
+
+// Générateur des premiers éléments html du body
+function bodyElementsGenerator(_route) {
+    if (_route[0] == 'isHomePage') {
+        var bodyElements =
+            `<p class="test-center">Bienvenue à la maison</p>`
+    } else if (_route[0] == 'isExplorer') {
+        var bodyElements =
+            `<div class="container" >` +
+              `<h1>Bitcoin explorer</h1>` +
+              `<h3 class="text-center">Faites vos recherches sur la blockchain Bitcoin!</h3>` +
+              `<div class="row">` +
                 `<div class="col-lg-2">` +
-                    `<p>Actual block : </p>` +
+                  `<p>Actual block : </p>` +
                 `</div>` +
                 `<div id="actualBlockHeight" class="col-lg-1"> ` +
-            `</div></div>` +
-            `<div class="row">` +
+              `</div></div>` +
+              `<div class="row">` +
                 `<div class="col-lg-12">` +
-                    `<form action="javascript:research('researchInput');">` +
-                        `<input type="text" class="form-control" id="researchInput" placeholder="Block Hash, block Height, Tx Hash or BTC address">` +
-                        `<button type="submit" class="btn btn-default" id="formBtn">Submit</button>` +
-                    `</form>` +
-                    `<div id="apiReturn">` +
-                        `<div class="row">` +
-                            `<div class="col-lg-6">` +
-                                `<h3>Infos</h3>` +
-                                `<div id="infos"></div>` +
-                            `</div>` +
-                            `<div class="col-lg-6">` +
-                                `<h3>Blockchain infos</h3>` +
-                                `<div id="blockchainInfos"></div>` +
-        `</div></div></div></div></div></div>` +
-        `<footer class="footer">` +
+                  `<form action="javascript:research('researchInput');">` +
+                    `<input type="text" class="form-control" id="researchInput" placeholder="Block Hash, block Height, Tx Hash or BTC address">` +
+                      `<button type="submit" class="btn btn-default" id="formBtn">Submit</button>` +
+                  `</form>` +
+                  `<div id="apiReturn">` +
+                    `<div class="row">` +
+                      `<div class="col-lg-6">` +
+                        `<h3>Infos</h3>` +
+                        `<div id="infos"></div>` +
+                      `</div>` +
+                      `<div class="col-lg-6">` +
+                        `<h3>Blockchain infos</h3>` +
+                        `<div id="blockchainInfos"></div>` +
+                `</div></div></div></div></div></div>` ;
+    } else if (_route[0] == 'isBlog') {
+        var bodyElements =
+            `<p class="test-center">Rien ici pour le moment</p>`
+    } else {
+        return false;
+    }
+
+    document.getElementById('bodyContent').innerHTML = bodyElements;
+    
+    return true;
+}
+
+// Generateur de contenu du body des pages
+function bodyContentGenerator(_route) {
+    if (_route[0] == 'isHomePage') {
+        var isActive =['class="active"','',''];
+    } else if (_route[0] == 'isExplorer') {
+        apiGetUgly('https://api.blockcypher.com/v1/btc/main', 'actualBlockHeight');
+        prettyApiGet('https://api.blockcypher.com/v1/btc/main', 'infos');
+        prettyApiGet('https://btc.blockr.io/api/v1/coin/info', 'blockchainInfos');
+    } else if (_route[0] == 'isBlog') {
+        var isActive = ['','','class="active"'];
+    } else {
+        return false;
+    }
+}
+
+// Generateur du footer
+function footerBlockGenerator(_route) {
+    var footerBlock = 
+    `<footer class="footer">` +
             `<div class="container">` +
                 `<ul>` +
                     `<li><a href="">Github</a></li>` +
                     `<li><a href="">Link</a></li>` +
                 `</ul>` +
                 `<p>Done by Tulsene for fun, fell free</p>` +
-        `</div></footer>` +
+        `</div></footer>`;
+
+    document.getElementById('footerBlock').innerHTML = footerBlock;
+
+    return true;
+}
+
+// Generateur de page html
+function pageGenerator() {
+    var route = routing();
+
+    var body = 
         `<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>` +
-        `<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>` +
-        `<script src="js/custom.js"></script>`;
+        `<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>`;
 
-    document.getElementsByTagName('body')[0].innerHTML = body;
+    document.getElementsByTagName('body')[0].innerHTML += body;
 
-    // Les calls api à exécuter au chargement de la page de l'explorer
-    apiGetUgly('https://api.blockcypher.com/v1/btc/main', 'actualBlockHeight');
-    prettyApiGet('https://api.blockcypher.com/v1/btc/main', 'infos');
-    prettyApiGet('https://btc.blockr.io/api/v1/coin/info', 'blockchainInfos');
+    // Récupérer les objet du DOM existant déjà pour les retirer
+    var elmt = document.getElementById('navBlock');
+    
+    while (elmt.firstChild) {
+        elmt.removeChild(elmt.firstChild);
+    }
+    
+    navBlockGenerator(route);
+
+
+    var elmt = document.getElementById('bodyContent');
+    while (elmt.firstChild) {
+        elmt.removeChild(elmt.firstChild);
+    }
+
+    bodyElementsGenerator(route);
+
+    bodyContentGenerator(route);
+    
+
+    var elmt = document.getElementById('footerBlock');
+    while (elmt.firstChild) {
+        elmt.removeChild(elmt.firstChild);
+    }
+
+    footerBlockGenerator(route);
 }
 
 function main() {
@@ -283,7 +400,7 @@ function main() {
 
     // Les fonction à exécuter au chargement de la page
     addEvent(window , "load", addHeadSettings);
-    addEvent(window , "load", homePageLoading);
+    addEvent(window , "load", pageGenerator);
 
     function start(fct) {
         addEvent(window, "load", fct);
