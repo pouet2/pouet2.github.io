@@ -186,6 +186,7 @@ function addNavigationLink(_data, _json) {
         }
 }
 
+// Permet de détecter l'url du site
 function routing() {
     var isHomePage =  /github.io\/index.html/.test(window.location.href);
     var isExplorer = /github.io\/explorer/.test(window.location.href);
